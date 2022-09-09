@@ -1,6 +1,5 @@
 -- REQUIRES LUA SUPPORT IN NEOVIM 
-
-require('plugins/plugins')
+require('patrick')
 
 
 -- variables for ease of use
@@ -16,7 +15,8 @@ options.background = 'dark'
 options.number = true
 options.relativenumber = true
 
+g.mapleader = " "
 -- colorschemes
-cmd [[colorscheme gruvbox-material]]
+cmd [[colorscheme carbonfox]]
 
 
