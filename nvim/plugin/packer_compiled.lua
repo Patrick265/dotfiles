@@ -74,20 +74,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
+  bogster = {
     loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  ["cmp-buffer"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
-  },
-  ["cmp-nvim-lsp"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/bogster",
+    url = "https://github.com/vv9k/bogster"
   },
   ["git-blame.nvim"] = {
     loaded = true,
@@ -99,35 +89,10 @@ _G.packer_plugins = {
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/glow.nvim",
     url = "https://github.com/ellisonleao/glow.nvim"
   },
-  ["hlargs.nvim"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/hlargs.nvim",
-    url = "https://github.com/m-demare/hlargs.nvim"
-  },
-  ["lspkind-nvim"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
-  },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["nightfox.nvim"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
-    url = "https://github.com/EdenEast/nightfox.nvim"
-  },
-  ["nvim-cmp"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -155,6 +120,11 @@ _G.packer_plugins = {
     path = "/home/patrick/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["omni.vim"] = {
+    loaded = true,
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/omni.vim",
+    url = "https://github.com/yonlu/omni.vim"
+  },
   ["oxocarbon-lua.nvim"] = {
     loaded = true,
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/oxocarbon-lua.nvim",
@@ -169,11 +139,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["symbols-outline.nvim"] = {
-    loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
-    url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
