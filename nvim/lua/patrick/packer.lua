@@ -1,10 +1,10 @@
 vim.cmd [[packadd packer.nvim]]
 
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+	augroup packer_user_config
+	autocmd!
+	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+	augroup end
 ]])
 
 return require('packer').startup(function(use)
@@ -16,11 +16,11 @@ return require('packer').startup(function(use)
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
-	
+
 	use {
 		'kyazdani42/nvim-tree.lua',
 		requires = {
-		    'kyazdani42/nvim-web-devicons', -- optional, for file icons
+			'kyazdani42/nvim-web-devicons', -- optional, for file icons
 		},
 		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
@@ -43,6 +43,15 @@ return require('packer').startup(function(use)
 
 	-- Intellisense
 	use 'neovim/nvim-lspconfig'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/nvim-cmp'
+	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+	use 'L3MON4D3/LuaSnip'
+	use 'saadparwaiz1/cmp_luasnip'
+	use 'onsails/lspkind.nvim'
 
 	-- Themes
 	use 'folke/tokyonight.nvim'
@@ -50,7 +59,7 @@ return require('packer').startup(function(use)
 	use 'catppuccin/vim'
 	use 'vv9k/bogster'
 	use 'yonlu/omni.vim'
-	use 
+	use 'EdenEast/nightfox.nvim'
 	-- Utility
 	use 'norcalli/nvim-colorizer.lua'
 
