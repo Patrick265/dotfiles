@@ -40,6 +40,9 @@ local kind_icons = {
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local navic = require("nvim-navic")
+local tabnine = require("cmp_tabnine.config")
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -97,13 +100,21 @@ cmp.setup({
 	},
 })
 
-local tabnine = require("cmp_tabnine.config")
 tabnine:setup({
 	max_lines = 1000,
 	max_num_results = 20,
 	sort = true,
 	run_on_every_keystroke = true,
 	snippet_placeholder = "..",
+})
+
+navic.setup({
+    icons = kind_icons,
+    highlight = false,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+    safe_output = true
 })
 
 local on_attach = function(client, bufnr)
@@ -128,6 +139,9 @@ local on_attach = function(client, bufnr)
 	nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
 	nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
 	inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 end
 
 local lsp_flags = {
@@ -135,6 +149,7 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 require("lspconfig").clangd.setup(
 {
 	on_attach = on_attach,
@@ -146,8 +161,26 @@ require("lspconfig").clangd.setup(
 		"--suggest-missing-includes"
 	}
 })
---require("lspconfig").pyright.setup(config())
---require("lspconfig").cmake.setup(config())
---require("lspconfig").cmake.setup(config())
---require("lspconfig").bashls.setup(config())
---require("lspconfig").rust_analyzer.setup(config())
+require("lspconfig").pyright.setup(
+{
+	on_attach = on_attach,
+	flags = lsp_flags,
+	capabilities = capabilities
+})
+
+require("lspconfig").cmake.setup(
+{
+	on_attach = on_attach,
+	flags = lsp_flags,
+	capabilities = capabilities
+})
+
+require("lspconfig").rust_analyzer.setup(
+{
+	on_attach = on_attach,
+	flags = lsp_flags,
+	capabilities = capabilities
+})
+
+
+
