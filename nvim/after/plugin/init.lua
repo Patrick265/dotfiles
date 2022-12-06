@@ -8,7 +8,7 @@ require'nvim-web-devicons'.setup {
 require('lualine').setup({
     options = {
         icons_enabled = true,
-        theme = 'tokyonight',
+        theme = 'nebulous',
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' }
     },
@@ -21,3 +21,7 @@ require('lualine').setup({
         lualine_z = {'searchcount'}
     }
 })
+
+vim.cmd([[
+    autocmd FileType cpp set keywordprg=cppman
+]])

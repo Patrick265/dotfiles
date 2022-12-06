@@ -51,11 +51,10 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
-	use 'L3MON4D3/LuaSnip'
 	use 'saadparwaiz1/cmp_luasnip'
+	use { 'L3MON4D3/LuaSnip', after="nvim-cmp"} 
 	use 'onsails/lspkind.nvim'
     use 'p00f/nvim-ts-rainbow'
-    use 'SmiteshP/nvim-navic'
 	-- Themes
 	use 'folke/tokyonight.nvim'
 	use 'vv9k/bogster'
