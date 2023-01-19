@@ -42,6 +42,35 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local tabnine = require("cmp_tabnine.config")
 
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+lsp.ensure_installed({
+    'clangd',
+    'pyright',
+    'cmake',
+    'golangci_lint_ls',
+    'rust_analyzer'
+})
+
+lsp.setup()
+
+lsp.set_preferences({
+  suggest_lsp_servers = true,
+  setup_servers_on_start = true,
+  set_lsp_keymaps = true,
+  configure_diagnostics = true,
+  cmp_capabilities = true,
+  manage_nvim_cmp = true,
+  call_servers = 'local',
+  sign_icons = {
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = ''
+  }
+})
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -98,15 +127,15 @@ cmp.setup({
         { name = "cmp_tabnine" },
         { name = "luasnip" },
     },
-    snippet = {
-        expand = function(args)
-            local luasnip = prequire("luasnip")
-            if not luasnip then
-                return
-            end
-            luasnip.lsp_expand(args.body)
-        end,
-    },
+    --snippet = {
+    --    expand = function(args)
+    --        local luasnip = require("luasnip")
+    --        if not luasnip then
+    --            return
+    --        end
+    --        luasnip.lsp_expand(args.body)
+    --    end,
+    --},
 })
 
 tabnine:setup({
@@ -177,7 +206,12 @@ require("lspconfig").rust_analyzer.setup(
     flags = lsp_flags,
     capabilities = capabilities
 })
-
+require'lspconfig'.golangci_lint_ls.setup(
+{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+})
 -- local snippets_paths = function()
     --	local plugins = { "friendly-snippets" }
     --	local paths = {}

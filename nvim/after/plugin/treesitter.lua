@@ -2,7 +2,7 @@
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
     sync_install = true,
-	autotag = true,
+    autotag = true,
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         extended_mode = true,
         max_file_lines = nil
-    }
+    },
 }
 
 require('winbar').setup({
