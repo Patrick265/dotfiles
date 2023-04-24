@@ -23,11 +23,18 @@ options.cmdheight = 1
 options.updatetime = 50
 options.wrap = false
 
+
+local autocmd = vim.api.nvim_create_autocmd
+
+
 require('patrick')
+
 -- Some plugins require stuff to be set before
 -- colorschemes
 -- cmd("colorscheme tokyonight-night")
-require("nebulous").setup { variant="night"}
+require("nebulous").setup { variant="twilight"}
 
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.cmd([[hi normal guibg=NONE ctermbg=NONE]])
