@@ -1,0 +1,49 @@
+icons_format = "{icon} "
+
+[theme]
+theme       = "dracula"
+
+[theme.overrides]
+idle_bg = "#3a0ca3"
+idle_fg = "#ffffff"
+# good_fg = { link = "warning_fg" }
+# good_bg = { link = "warning_bg" }
+# warning_fg = { link = "good_fg" }
+# warning_bg = { link = "good_bg" }
+# separator_bg = "#ffffff"
+#separator_fg = "#ffffff"
+
+[icons]
+icons       = "awesome"
+[icons.overrides]
+bat             = " "
+bat_full        = " "
+bat_charging    = ""
+bat_discharging = ""
+volume          = "\uf028"
+
+[[block]]
+block       = "cpu"
+
+[[block]]
+block       = "memory"
+format      = " $icon$mem_total_used_percents.eng(w:2) "
+format_alt  = " $icon_swap$swap_used_percents.eng(w:2) "
+
+[[block]]
+block       = "sound"
+
+[[block.click]]
+button   = "left"
+cmd      = "pavucontrol"
+
+[[block]]
+block       = "battery"
+interval    = 10
+format      = " $icon$percentage"
+full_format = " $icon$percentage"
+
+[[block]]
+block    = "time"
+interval = 5
+format   = " $icon $timestamp.datetime() "
