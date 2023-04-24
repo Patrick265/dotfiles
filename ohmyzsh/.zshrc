@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export VISUAL="nvim"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="awesomepanda"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -54,22 +61,8 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy/mm/dd"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git 
 	colorize
 	docker
@@ -80,34 +73,17 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+alias dr18="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:18.04.3"
+alias dr22="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:22.04"
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias dr="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:18.04.3"
 alias hm="cd $HOME"
 alias dev="cd $HOME/dev"
+
+alias ll="ls -la"
+
 alias moxa="telnet 10.4.218.25 4001"
-alias reboot="$ECHO no"
+alias reboot="echo \"no I don't think I will.\""
+
 alias e="nvim"
 alias gsub="git submodule update --init --recursive"
 alias gs="git status"
@@ -115,9 +91,24 @@ alias gc="git commit -m"
 alias gp="git push"
 alias gpu="git pull"
 alias gall="git add *"
+alias gclean="git_delete_unused_branches"
+alias venv="source .venv/bin/activate"
+alias cat="batcat"
+# Tired of going to dir config
+alias cvim="cd ~/.config/nvim/"
 # alias c2 = "client2 -i 10.4.218.30 -s 0 -c u -f"
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="/home/patrick/bin:/home/patrick/.cargo/bin:$PATH"
+export PATH="/usr/local/go/bin:/home/patrick/bin:/home/patrick/.cargo/bin:/home/patrick/.local/bin:/home/patrick/go/bin:$PATH"
 
+
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+unsetopt nomatch
+
+function git_delete_unused_branches() {
+    git fetch -p;
+    for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}');
+    do 
+        git branch -D $branch; 
+    done
+}
