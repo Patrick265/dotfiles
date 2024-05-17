@@ -1,11 +1,9 @@
 icons_format = "{icon} "
 
 [theme]
-theme       = "dracula"
+theme       = "space-villain"
 
 [theme.overrides]
-idle_bg = "#3a0ca3"
-idle_fg = "#ffffff"
 # good_fg = { link = "warning_fg" }
 # good_bg = { link = "warning_bg" }
 # warning_fg = { link = "good_fg" }
@@ -14,7 +12,7 @@ idle_fg = "#ffffff"
 #separator_fg = "#ffffff"
 
 [icons]
-icons       = "awesome"
+icons = "awesome"
 [icons.overrides]
 bat             = " "
 bat_full        = " "
