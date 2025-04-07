@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 CONFIG_DIR=$HOME/.config
 
 mkdir -p i3 i3status-rust nvim alacritty rofi ohmyzsh dunst compton screenlayout
@@ -22,3 +23,4 @@ cp $CONFIG_DIR/dunst/dunstrc dunst/
 cp $CONFIG_DIR/compton.conf compton/
 
 cp -r ~/.screenlayout/* screenlayout/
+
