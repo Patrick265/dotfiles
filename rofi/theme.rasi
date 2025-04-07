@@ -6,6 +6,7 @@
     background-colour:           var(background);
     foreground-colour:           var(foreground);
     alternate-background:        var(background-alt);
+    alternate-foreground:        var(foreground-alt);
     normal-background:           var(background);
     normal-foreground:           var(foreground);
     urgent-background:           var(urgent);
@@ -27,16 +28,14 @@
 }
 
 window {
-    /* properties for window widget */
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
-    height:                      300px;
+    width:                       640px;
+    height:                      500px;
     x-offset:                    0px;
     y-offset:                    0px;
 
-    /* properties for all widgets */
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
@@ -61,7 +60,7 @@ mainbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
+    margin:                      5px;
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
@@ -72,23 +71,22 @@ inputbar {
 }
 
 prompt {
-    enabled:                     true;
+    enabled:                     false;
     background-color:            inherit;
-    text-color:                  inherit;
+    text-color:                  @alternate-foreground;
 }
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "::";
     background-color:            inherit;
     text-color:                  inherit;
 }
 entry {
     enabled:                     true;
     background-color:            inherit;
-    text-color:                  inherit;
-    placeholder:                 "Search...";
-    placeholder-color:           inherit;
+    text-color:                  @alternate-foreground;
+    placeholder:                 "Search";
+    placeholder-color:           @alternate-foreground;
 }
 num-filtered-rows {
     enabled:                     true;
@@ -117,7 +115,7 @@ case-indicator {
 
 listview {
     enabled:                     true;
-    columns:                     2;
+    columns:                     1;
     lines:                       10;
     cycle:                       true;
     dynamic:                     true;

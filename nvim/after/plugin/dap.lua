@@ -5,10 +5,10 @@ local Remap = require("patrick.keymap")
 local nnoremap  = Remap.nnoremap
 local inoremap  = Remap.inoremap
 
-dap.adapters.cppdbg = {
-    id = 'cppdbg',
-    type = 'executable',
-    command = '/home/patrick/.vscode/extensions/ms-vscode.cpptools-1.15.4-linux-x64/debugAdapters/bin/OpenDebugAD7',
+dap.adapters.gdb = {
+  type = "executable",
+  command = "gdb",
+  args = { "-i", "dap" }
 }
 
 dap.configurations.cpp = {

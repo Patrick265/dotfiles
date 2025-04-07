@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export VISUAL="nvim"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="edvardm"
 
 zstyle ':omz:update' mode auto      # update automatically without asking
 
@@ -21,10 +21,13 @@ plugins=(git
 source $ZSH/oh-my-zsh.sh
 
 alias dr18="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:18.04.3"
+alias dr20="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:20.04"
 alias dr22="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:22.04"
+alias dr24="docker run -ti -u $(stat -c "%u:%g" $(pwd)) -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:24.04"
+alias dr_xt_neuron="docker run -ti --cpus=12 --memory="20g" --memory-swap="-1" --name xt_server_neuron_sdk -v $(pwd):/workspace:rw --cap-add=SYS_PTRACE --security-opt seccomp=unconfined evs-xt-release-docker.artifactory.evs.tv/neuron-sdk:latest"
+alias e="nvim"
 
 alias hm="cd $HOME"
-alias dev="cd $HOME/dev"
 
 alias ll="ls -la"
 alias reboot="echo \"no I don't think I will.\""
@@ -37,15 +40,19 @@ alias gpu="git pull"
 alias gall="git add *"
 alias gclean="git_delete_unused_branches"
 alias venv="source .venv/bin/activate"
-alias cleanAngii="cd angii_sw/extern/angii_fw; rm -rf src/ips/sgdma/sim/sim_tools && rm -rf sim/sim_tools && popd"
-alias cat="batcat"
-alias e="nvim"
+
+alias sly1="~/.screenlayout/layout.sh"
+alias sly2="~/.screenlayout/layout2.sh"
+
 
 export PATH="$PATH"
 export PATH="$PATH:/usr/local/go/bin:/home/patrick/bin:"
 export PATH="$PATH:/home/patrick/.local/bin:"
+export PATH="$PATH:/home/patrick/bin/tracy/profiler/build/unix:"
 export PATH="$PATH:/home/patrick/bin/vcpkg/:/home/patrick/.cargo/bin:/home/patrick/go/bin"
 export PATH="$PATH:/home/patrick/.spicetify"
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/home/patrick/bin/odin"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
@@ -58,4 +65,6 @@ function git_delete_unused_branches() {
         git branch -D $branch; 
     done
 }
+
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

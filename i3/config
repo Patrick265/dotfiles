@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:FiraCode Nerd 13
+font pango: Cascadia Code NF, FontAwesome 12
 
 exec --no-startup-id compton
 # Work monitors
@@ -9,6 +9,7 @@ exec --no-startup-id compton
 # Applets
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-manager
+exec --no-startup-id flameshot 
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -152,6 +153,7 @@ workspace $ws19 output "DP-1-2"
 workspace $ws20 output "eDP-1"
 workspace $ws21 output "eDP-1"
 workspace $ws22 output "eDP-1"
+
 # move focused container to workspace
 bindsym $mod+Shift+1 	move container to workspace number $ws1
 bindsym $mod+Shift+2 	move container to workspace number $ws2
@@ -212,18 +214,18 @@ mode "resize" {
         bindsym $mod+d mode "default"
 }
 
-set $bg       #0f0f0f
-set $ws-bg    #0f0f0f
-set $ws-text  #e9e9e9
-set $aws-bg   #3a0ca3
-set $aws-text #ffffff
+set $bg       #000000
+set $ws-bg    #000000
+set $ws-text  #ffffff
+set $aws-bg   #ffffff
+set $aws-text #000000
 set $uws-bg   #d62828
 set $uws-text #ffffff
 
-set $iws-bg   #4361EE
+set $iws-bg   #ffffff
 
 bar {
-    font pango: Cascadia Code NF, FiraCode nerd, FontAwesome 12
+    font pango: Cascadia Code NF, FontAwesome 12
     position top
     status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config.toml
     tray_output primary
@@ -248,17 +250,15 @@ client.focused_inactive $iws-bg $bg     $ws-text $bg       $bg
 default_border pixel 1
 default_floating_border pixel 1
 bindsym Control+Shift+1 [class="^.*"] border toggle
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 1 
 
 gaps outer 5
 gaps inner 5
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/zh81k0lczz4a1.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/gdborwgqif2d1.png
 
-bindsym $mod+e exec dolphin
+bindsym $mod+Return exec alacritty 
+bindsym $mod+e exec thunar
 bindsym $mod+r exec rofi -i -show drun -modi drun -show-icons -font "Cascadia Code NF 12"
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-
-# start a terminal
-bindsym $mod+Return exec alacritty 
 
