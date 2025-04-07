@@ -18,3 +18,5 @@ cp $CONFIG_DIR/zsh/.zshrc ohmyzsh/
 # rofi/dunst
 cp -r $CONFIG_DIR/rofi/*     rofi/
 cp $CONFIG_DIR/dunst/dunstrc dunst/
+
+cp $CONFIG_DIR/compton.conf compton/
