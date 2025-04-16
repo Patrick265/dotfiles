@@ -1,4 +1,0 @@
-# Packages
-
-## Requires
-- Cppman
