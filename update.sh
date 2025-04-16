@@ -2,7 +2,7 @@
 
 CONFIG_DIR=$HOME/.config
 
-mkdir -p i3 i3status-rust nvim alacritty rofi ohmyzsh dunst
+mkdir -p i3 i3status-rust nvim alacritty rofi ohmyzsh dunst compton screenlayout
 
 # i3wm
 cp $CONFIG_DIR/i3/config i3/
@@ -20,3 +20,5 @@ cp -r $CONFIG_DIR/rofi/*     rofi/
 cp $CONFIG_DIR/dunst/dunstrc dunst/
 
 cp $CONFIG_DIR/compton.conf compton/
+
+cp -r ~/.screenlayout/* screenlayout/
