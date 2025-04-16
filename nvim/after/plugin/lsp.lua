@@ -1,13 +1,11 @@
-local Remap = require("patrick.keymap")
-
-local nnoremap = Remap.nnoremap
-local inoremap = Remap.inoremap
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+local tabnine = require("cmp_tabnine.config")
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
-
 
 local kind_icons = {
     Text = "",
@@ -37,51 +35,97 @@ local kind_icons = {
     TypeParameter = ""
 }
 
-
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-local tabnine = require("cmp_tabnine.config")
-
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
+local lspconfig_defaults = require('lspconfig').util.default_config
 
-lsp.ensure_installed({
-    'clangd',
-    'pyright',
-    'cmake',
-    'golangci_lint_ls',
-    'rust_analyzer'
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lspconfig_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+)
+
+-- This is where you enable features that only work
+-- if there is a language server active in the file
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
+
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        -- See telescope plugin vim.keymap.set('n', '<leader>vs', '<cmd>lua vim.lsp.buf.document_symbol()<cr>', opts)
+        -- See telescope.plugin vim.keymap.set('n', '<leader>vws', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>', opts)
+        vim.keymap.set('n', "<leader>vd", '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set('n', '<F3>', '<cmd>lua vim.lsp.buf.format()<cr>', opts)
+        vim.keymap.set('n', '<leader>gcD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', '<leader>go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', '<leader>vrr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        vim.keymap.set('n', '<leader>vca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    end,
 })
 
-lsp.setup()
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = { 'clangd', 'pyright', 'cmake', 'rust_analyzer' },
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+    }
+})
 
-lsp.set_preferences({
-  suggest_lsp_servers = true,
-  setup_servers_on_start = true,
-  set_lsp_keymaps = true,
-  configure_diagnostics = true,
-  cmp_capabilities = true,
-  manage_nvim_cmp = true,
-  call_servers = 'local',
-  sign_icons = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  }
+require("lspconfig").clangd.setup(
+    {
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--suggest-missing-includes"
+        }
+    })
+require("lspconfig").pyright.setup(
+    {
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities
+    })
+
+require("lspconfig").cmake.setup(
+    {
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities
+    })
+
+require("lspconfig").rust_analyzer.setup(
+    {
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities
+    })
+
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '✘',
+            [vim.diagnostic.severity.WARN] = '▲',
+            [vim.diagnostic.severity.HINT] = '⚑',
+            [vim.diagnostic.severity.INFO] = '»',
+        },
+    },
 })
 
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
-    },
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    formatting = {  
+    formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
@@ -110,7 +154,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s"}),
+        end, { "i", "s" }),
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -120,22 +164,13 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s"}),
+        end, { "i", "s" }),
     },
-    sources ={ 
+    sources = {
         { name = "nvim_lsp" },
         { name = "cmp_tabnine" },
         { name = "luasnip" },
     },
-    --snippet = {
-    --    expand = function(args)
-    --        local luasnip = require("luasnip")
-    --        if not luasnip then
-    --            return
-    --        end
-    --        luasnip.lsp_expand(args.body)
-    --    end,
-    --},
 })
 
 tabnine:setup({
@@ -146,90 +181,4 @@ tabnine:setup({
     snippet_placeholder = "..",
 })
 
-local on_attach = function(client, bufnr)
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    nnoremap("<leader>gd", function() vim.lsp.buf.definition() end)
-    nnoremap("K", function() vim.lsp.buf.hover() end)
-    nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-    nnoremap("<leader>vd", function() vim.diagnostic.open_float() end)
-    nnoremap("[d", function() vim.diagnostic.goto_next() end)
-    nnoremap("]d", function() vim.diagnostic.goto_prev() end)
-    nnoremap("<leader>vca", function() vim.lsp.buf.code_action() end)
-    nnoremap("<leader>vco", function() vim.lsp.buf.code_action({
-        filter = function(code_action)
-            if not code_action or not code_action.data then
-                return false
-            end
-            local data = code_action.data.id
-            return string.sub(data, #data - 1, #data) == ":0"
-        end,
-        apply = true
-    }) end)
-    nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
-    nnoremap("<F2>", function() vim.lsp.buf.rename() end)
-    nnoremap("<F3>", function() vim.lsp.buf.format() end)
-end
-
-local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
-}
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-require("lspconfig").clangd.setup(
-{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-    cmd = {
-        "clangd",
-        "--background-index",
-        "--suggest-missing-includes"
-    }
-})
-require("lspconfig").pyright.setup(
-{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities
-})
-
-require("lspconfig").cmake.setup(
-{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities
-})
-
-require("lspconfig").rust_analyzer.setup(
-{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities
-})
-require'lspconfig'.golangci_lint_ls.setup(
-{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-})
--- local snippets_paths = function()
-    --	local plugins = { "friendly-snippets" }
-    --	local paths = {}
-    --	local path
-    --	local root_path = vim.env.HOME .. "/.vim/plugged/"
-    --	for _, plug in ipairs(plugins) do
-    --		path = root_path .. plug
-    --		if vim.fn.isdirectory(path) ~= 0 then
-    --			table.insert(paths, path)
-    --		end
-    --	end
-    --	return paths
-    --end
-    --
-    --require("luasnip.loaders.from_vscode").lazy_load({
-        --	paths = snippets_paths(),
-        --	include = nil, -- Load all languages
-        --	exclude = {},
-        --})
-        --
+require('cmp_nvim_lsp').default_capabilities()

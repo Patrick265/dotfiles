@@ -21,6 +21,7 @@ options.backup         = false
 options.cmdheight      = 1
 options.updatetime     = 50
 options.wrap           = false
+options.signcolumn     = 'yes'
 
 -- Some plugins require stuff to be set before
 -- colorschemes

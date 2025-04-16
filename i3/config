@@ -2,9 +2,12 @@ set $mod Mod4
 
 font pango: Cascadia Code NF, FontAwesome 12
 
+exec --no-startup-id dex --autostart --environment i3
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
 exec --no-startup-id compton
-# Work monitors
-# exec --no-startup-id ~/.screenlayout/layout.sh
 
 # Applets
 exec --no-startup-id nm-applet
@@ -125,7 +128,7 @@ bindsym $mod+F3 	workspace number $ws13
 bindsym $mod+F4 	workspace number $ws14
 bindsym $mod+F5  	workspace number $ws15
 bindsym $mod+F6  	workspace number $ws16
-bindsym $mod+F7     workspace number $ws17
+bindsym $mod+F7     	workspace number $ws17
 bindsym $mod+F8  	workspace number $ws18
 bindsym $mod+F9  	workspace number $ws19
 bindsym $mod+F10  	workspace number $ws20
@@ -255,10 +258,8 @@ for_window [class="^.*"] border pixel 1
 gaps outer 5
 gaps inner 5
 
-exec_always --no-startup-id feh --bg-fill ~/Pictures/gdborwgqif2d1.png
-
 bindsym $mod+Return exec alacritty 
 bindsym $mod+e exec thunar
 bindsym $mod+r exec rofi -i -show drun -modi drun -show-icons -font "Cascadia Code NF 12"
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-
+exec_always --no-startup-id feh --bg-fill ~/Pictures/k80uk50z1mm61.webp

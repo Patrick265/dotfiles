@@ -41,23 +41,22 @@ alias gall="git add *"
 alias gclean="git_delete_unused_branches"
 alias venv="source .venv/bin/activate"
 
-alias sly1="~/.screenlayout/layout.sh"
-alias sly2="~/.screenlayout/layout2.sh"
-
-
+alias sly="~/.screenlayout/layout2.sh"
+alias sly_work="~/.screenlayout/layout.sh"
+alias sly_hm="~/.screenlayout/layout-hm.sh"
 export PATH="$PATH"
 export PATH="$PATH:/usr/local/go/bin:/home/patrick/bin:"
 export PATH="$PATH:/home/patrick/.local/bin:"
 export PATH="$PATH:/home/patrick/bin/tracy/profiler/build/unix:"
-export PATH="$PATH:/home/patrick/bin/vcpkg/:/home/patrick/.cargo/bin:/home/patrick/go/bin"
+export PATH="$PATH:/home/patrick/.cargo/bin"
 export PATH="$PATH:/home/patrick/.spicetify"
-export PATH="$PATH:/opt/nvim-linux64/bin"
-export PATH="$PATH:/home/patrick/bin/odin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 unsetopt nomatch
-export TERM=xterm-256color
+# export TERM=xterm-256color
+export TERM=screen-256color
 function git_delete_unused_branches() {
     git fetch -p;
     for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}');

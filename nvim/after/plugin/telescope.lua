@@ -3,7 +3,6 @@ local telescope = require("telescope")
 local Remap = require("patrick.keymap")
 
 local nnoremap  = Remap.nnoremap
-local inoremap  = Remap.inoremap
 
 local options = { 
     defaults = {
@@ -78,12 +77,16 @@ nnoremap("<Leader>fe", function()
     require"telescope.builtin".diagnostics()
 end)
 
-nnoremap("<Leader>fb", function()
-    require"telescope.builtin".lsp_document_symbols()
-end)
-
 nnoremap("<Leader>fr", function()
     require"telescope.builtin".lsp_references()
+end)
+
+nnoremap("<Leader>vs", function()
+    require('telescope.builtin').lsp_document_symbols()
+end)
+
+nnoremap("<Leader>vw", function()
+    require('telescope.builtin').lsp_workspace_symbols()
 end)
 
 nnoremap("<Leader>fs", function()
@@ -93,3 +96,4 @@ end)
 nnoremap("<Leader>fw", function()
     require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword> ")})
 end)
+
