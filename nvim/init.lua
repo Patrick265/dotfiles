@@ -20,6 +20,7 @@ options.swapfile = false
 options.backup = false
 options.cmdheight = 1
 options.updatetime = 50
+options.wrap = false
 -- options.guicursor = ""
 
 require('patrick')

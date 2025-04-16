@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
 	use 'catppuccin/vim'
 	use 'vv9k/bogster'
 	use 'yonlu/omni.vim'
-
+	use 
 	-- Utility
 	use 'norcalli/nvim-colorizer.lua'
 
