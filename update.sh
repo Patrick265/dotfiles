@@ -7,9 +7,11 @@ cp $CONFIG_DIR/i3status-rust/config.toml i3status-rust/
 # neovim
 cp -r $CONFIG_DIR/nvim/* nvim/
 
+# alacritty
+cp -r $CONFIG_DIR/alacritty/* alacritty/
 # zsh
-cp $HOME/.zshrc ohmyzsh/ 
+cp $CONFIG_DIR/zsh/.zshrc ohmyzsh/
 
 # rofi/dunst
-cp $CONFIG_DIR/rofi/config rofi/
+cp -r $CONFIG_DIR/rofi/*     rofi/
 cp $CONFIG_DIR/dunst/dunstrc dunst/

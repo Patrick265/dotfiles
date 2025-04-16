@@ -15,7 +15,6 @@ options.number = true
 options.relativenumber = true
 options.termguicolors = true
 g.mapleader = " "
-options.colorcolumn = "80"
 options.updatetime = 50
 options.swapfile = false
 options.backup = false
@@ -31,10 +30,10 @@ require('patrick')
 
 -- Some plugins require stuff to be set before
 -- colorschemes
--- cmd("colorscheme tokyonight-night")
-require("nebulous").setup { variant="twilight"}
+cmd("colorscheme koehler")
+-- require("nebulous").setup { variant="twilight"}
 
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
+g.loaded = 1
+g.loaded_netrwPlugin = 1
 
 vim.cmd([[hi normal guibg=NONE ctermbg=NONE]])

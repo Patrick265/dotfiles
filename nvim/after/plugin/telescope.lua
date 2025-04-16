@@ -5,8 +5,6 @@ local Remap = require("patrick.keymap")
 local nnoremap  = Remap.nnoremap
 local inoremap  = Remap.inoremap
 
-local theme_selection = "dropdown"
-
 local options = { 
     defaults = {
         vimgrep_arguments = {
@@ -23,25 +21,24 @@ local options = {
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {
             horizontal = {
-                prompt_position = "top",
-                preview_width = 0.8,
-                results_width = 0.3,
+                prompt_position = "bottom",
+                preview_width = 0.6,
+                results_width = 0.4,
             },
             vertical = {
                 mirror = false,
             },
-            width = 0.80,
-            height = 0.80,
-            preview_cutoff = 120,
+            width = 0.90,
+            height = 0.90,
+            preview_cutoff = 80,
         },
         file_sorter =  require'telescope.sorters'.get_fuzzy_file,
         file_ignore_patterns = { ".git/", ".cache", "%.o", "%.a", "%.out", ".clangd/", 
                                 "acp2/", "angii_sw/", "sony-nmos-daemon/", "device-tree/", 
-                                "logging/", "uio/", "libswp08/", "smarc/" },
+                                "logging/", "libswp08/", "smarc/" },
                                 
         generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
         winblend = 0,
@@ -64,18 +61,29 @@ local M = {}
 M.project_files = function()
   local opts = {} -- define here if you want to define something
   if vim.v.shell_error == 0 then
-    require"telescope.builtin".git_files(opts)
   else
     require"telescope.builtin".find_files(opts)
   end
 end
 
 nnoremap("<Leader>ff", function()
-    local opts  = {}
-    local ok    = pcall(require('telescope.builtin').git_files, opts)
-    if not ok then 
-        require("telescope.builtin").find_files(opts)
-    end
+    require"telescope.builtin".find_files(opts)
+end)
+
+nnoremap("<Leader>fg", function()
+    require"telescope.builtin".git_files(opts)
+end)
+
+nnoremap("<Leader>fe", function()
+    require"telescope.builtin".diagnostics()
+end)
+
+nnoremap("<Leader>fb", function()
+    require"telescope.builtin".lsp_document_symbols()
+end)
+
+nnoremap("<Leader>fr", function()
+    require"telescope.builtin".lsp_references()
 end)
 
 nnoremap("<Leader>fs", function()

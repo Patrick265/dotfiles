@@ -1,0 +1,7 @@
+configuration {
+    modi: "drun,run,window,ssh";
+    show-icons: true;
+    display-drun: "";
+}
+
+@theme "~/.config/rofi/theme.rasi"

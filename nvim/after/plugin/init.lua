@@ -22,6 +22,13 @@ require('lualine').setup({
     }
 })
 
-vim.cmd([[
-    autocmd FileType cpp set keywordprg=cppman
-]])
+require("nvim-tree").setup()
+require("colorizer").setup()
+
+
+require('glow').setup(
+{
+	style = "dark",
+	width = 300
+})
+

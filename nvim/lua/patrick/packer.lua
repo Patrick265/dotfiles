@@ -66,15 +66,26 @@ return require('packer').startup(function(use)
         }
     }
     -- Themes
-    use 'folke/tokyonight.nvim'
     use 'vv9k/bogster'
     use 'EdenEast/nightfox.nvim'
     use 'Yagua/nebulous.nvim'
     use 'bluz71/vim-moonfly-colors'
     use 'sainnhe/sonokai'
-    use 'nvim-tree/nvim-web-devicons'
+    use({ 'kepano/flexoki-neovim', as = 'flexoki' })
+    use { "catppuccin/nvim", as = "catppuccin" }
     -- Utility
     use 'norcalli/nvim-colorizer.lua'
     use 'lewis6991/gitsigns.nvim'
+
+    use 'nvim-tree/nvim-web-devicons'
+    -- Debugging
+    use 'mfussenegger/nvim-dap'
+
+    -- Tasks
+    use {
+      'stevearc/overseer.nvim',
+      config = function() require('overseer').setup() end
+    }
+
 end)
 
