@@ -1,6 +1,9 @@
 #!/bin/bash
 
 CONFIG_DIR=$HOME/.config
+
+mkdir -p i3 i3status-rust nvim alacritty rofi ohmyzsh dunst
+
 # i3wm
 cp $CONFIG_DIR/i3/config i3/
 cp $CONFIG_DIR/i3status-rust/config.toml i3status-rust/

@@ -166,7 +166,8 @@ local on_attach = function(client, bufnr)
         apply = true
     }) end)
     nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
-    nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
+    nnoremap("<F2>", function() vim.lsp.buf.rename() end)
+    nnoremap("<F3>", function() vim.lsp.buf.format() end)
 end
 
 local lsp_flags = {

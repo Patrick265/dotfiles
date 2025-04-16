@@ -1,0 +1,21 @@
+general.import = [ "~/.config/alacritty/themes/themes/hyper.toml" ]
+general.live_config_reload = true
+
+[terminal.shell]
+program = "/bin/zsh"
+args = [ "-l", "-c", "tmux" ] 
+
+[window]
+padding.x = 10
+padding.y = 10
+decorations = "Full"
+
+[cursor]
+style = { shape = "Beam", blinking = "Always" } 
+vi_mode_style = "None"
+unfocused_hollow = false
+
+[font]
+size = 10.0
+normal = { family = "Cascadia Code NF", style = "Regular" } 
+bold = { family = "Cascadia Code NF", style = "Bold" } 

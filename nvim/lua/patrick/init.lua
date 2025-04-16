@@ -1,2 +1,2 @@
 require("patrick.packer")
-require("patrick.plugins")
+require("patrick.settings")

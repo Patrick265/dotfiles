@@ -8,11 +8,11 @@
     padding                 = 8
     horizontal_padding      = 8
     text_icon_padding       = 0
-    frame_width             = 0
+    frame_width             = 1
 
     sort                    = yes
     idle_threshold          = 120
-    font                    = FiraCode nerd 13
+    font                    = Cascadia Code NF 12
     line_height             = 0
     markup                  = full
     alignment               = left
@@ -24,11 +24,10 @@
     show_indicators         = yes
     startup_notification    = false
 
-    min_icon_size           = 0
+    min_icon_size           = 64
     max_icon_size           = 64
-    icon_path               = ~/.local/share/icons/Tela/16/actions/:~/.local/share/icons/Tela/16/apps/:~/.local/share/icons/Tela/16/devices/:~/.local/share/icons/Tela/16/mimetypes/:~/.local/share/icons/Tela/16/panel/:~/.local/share/icons/Tela/16/places/:~/.local/share/icons/Tela/16/status/ 
 
-    corner_radius           = 5
+    corner_radius           = 1
     timeout                 = 5
 
     format = "<b>%a</b>\n%s\n%b"
@@ -43,14 +42,17 @@
     context = mod4+shift+i
  
 [urgency_low]
-	background = "#3a0ca3"
-	foreground = "#e9e9e9"
- 
+	background = "#000000"
+	foreground = "#ffffff"
+    frame_color = "#ffffff"
+
 [urgency_normal]
-	background = "#3a0ca3"
-	foreground = "#e9e9e9"
+	background = "#000000"
+	foreground = "#ffffff"
+    frame_color = "#ffffff"
  
 [urgency_critical]
-	background = "#d62828"
-	foreground = "#e9e9e9"
+	background  = "#d62828"
+	foreground  = "#ffffff"
+    frame_color = "#ffffff"
  
