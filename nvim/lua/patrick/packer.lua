@@ -27,7 +27,10 @@ return require('packer').startup(function(use)
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.0',
 		requires = { {'nvim-lua/plenary.nvim'} }
-}
+	}
+
+	-- Intellisense
+	use {'neoclide/coc.nvim', branch = 'release'}	
 	-- THEMES
 	use 'folke/tokyonight.nvim'
 	use 'EdenEast/nightfox.nvim'
