@@ -15,10 +15,6 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Fira Code 12
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -32,6 +28,11 @@ exec --no-startup-id nm-applet
 # removes screen tearing (IT SHOULD)
 exec --no-startup-id compton
 
+# Applets
+exec --no-startup-id blueman-manager
+
+# Work monitors
+exec --no-startup-id ~/.screenlayout/layout.sh
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -40,17 +41,27 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 bindsym $mod+r exec rofi -i -show drun -modi drun -show-icons
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -133,6 +144,17 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+workspace $ws1 output "DP-1-1"
+workspace $ws2 output "DP-1-1"
+workspace $ws3 output "DP-1-1"
+workspace $ws4 output "DP-1-1"
+workspace $ws5 output "DP-1-1"
+workspace $ws6 output "DP-1-1"
+workspace $ws7 output "eDP-1"
+workspace $ws8 output "DP-1-2"
+workspace $ws9 output "DP-1-2"
+workspace $ws10 output "DP-1-2"
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -185,11 +207,17 @@ bindsym $mod+d mode "resize"
 #         status_command i3status
 # }
 
-default_border pixel 0
-default_floating_border pixel 0
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #89dceb
+default_border pixel 1
+default_floating_border pixel 1
 bindsym Control+Shift+1 [class="^.*"] border toggle
 for_window [class="^.*"] border pixel 1
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/STScI-01G8GX1KMWX2XA4PK2EWM7KE3R.png 
+
+
+gaps inner 10
+gaps outer 10
