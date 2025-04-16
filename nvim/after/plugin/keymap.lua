@@ -11,6 +11,7 @@ nnoremap("<Leader>h", ":tabprevious<CR>")
 nnoremap("<C-u>", "<C-u>zz")
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("n", "nzz")
+nnoremap("<Leader>s", ":ClangdSwitchSourceHeader<CR>")
 
 nnoremap("<Leader>ee", ":NvimTreeToggle<CR>")
 nnoremap("<Leader>mdp", ":Glow<CR>")
@@ -61,3 +62,7 @@ require('gitsigns').setup(
 
     end
 })
+
+-- C/C++ Things
+--
+--
