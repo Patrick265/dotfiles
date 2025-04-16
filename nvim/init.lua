@@ -9,6 +9,7 @@ local options = vim.opt
 options.termguicolors= true
 options.shiftwidth = 4
 options.tabstop=4
+options.expandtab = true
 options.background = 'dark'
 options.number = true
 options.relativenumber = true
@@ -26,8 +27,7 @@ options.wrap = false
 require('patrick')
 -- Some plugins require stuff to be set before
 -- colorschemes
-cmd [[colorscheme omni]]
+cmd("colorscheme tokyonight-night")
 
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
-

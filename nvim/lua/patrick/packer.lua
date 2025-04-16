@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
 	-- Statusbar
 	use {
 		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+		requires = { 'kyazdani42/nvim-web-devicons' }
 	}
 
 	use {
@@ -24,6 +24,8 @@ return require('packer').startup(function(use)
 		},
 		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
+    use { 'fgheng/winbar.nvim' }
+
 
 	-- Markdown
 	use {"ellisonleao/glow.nvim"}
@@ -52,16 +54,17 @@ return require('packer').startup(function(use)
 	use 'L3MON4D3/LuaSnip'
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'onsails/lspkind.nvim'
-
+    use 'p00f/nvim-ts-rainbow'
+    use 'SmiteshP/nvim-navic'
 	-- Themes
 	use 'folke/tokyonight.nvim'
 	use 'B4mbus/oxocarbon-lua.nvim'
-	use 'catppuccin/vim'
 	use 'vv9k/bogster'
-	use 'yonlu/omni.vim'
 	use 'EdenEast/nightfox.nvim'
+    use 'nvim-tree/nvim-web-devicons'
 	-- Utility
 	use 'norcalli/nvim-colorizer.lua'
+    use 'f-person/git-blame.nvim'
 
 
 end)

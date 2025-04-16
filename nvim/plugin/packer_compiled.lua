@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -144,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-navic"] = {
+    loaded = true,
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-navic",
+    url = "https://github.com/SmiteshP/nvim-navic"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -154,16 +164,15 @@ _G.packer_plugins = {
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
-  ["nvim-web-devicons"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
-    url = "https://github.com/kyazdani42/nvim-web-devicons"
-  },
-  ["omni.vim"] = {
+  ["nvim-ts-rainbow"] = {
     loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/omni.vim",
-    url = "https://github.com/yonlu/omni.vim"
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["oxocarbon-lua.nvim"] = {
     loaded = true,
@@ -190,10 +199,10 @@ _G.packer_plugins = {
     path = "/home/patrick/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  vim = {
+  ["winbar.nvim"] = {
     loaded = true,
-    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/vim",
-    url = "https://github.com/catppuccin/vim"
+    path = "/home/patrick/.local/share/nvim/site/pack/packer/start/winbar.nvim",
+    url = "https://github.com/fgheng/winbar.nvim"
   }
 }
 
