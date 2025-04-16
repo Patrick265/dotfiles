@@ -1,6 +1,6 @@
 # time
 function real_time() {
-    local color="%{$fg_no_bold[magenta]%}";                    # color in PROMPT need format in %{XXX%} which is not same with echo
+    local color="%{$fg_bold[magenta]%}";                    # color in PROMPT need format in %{XXX%} which is not same with echo
     local time="($(date +%H:%M:%S))";
     local color_reset="%{$reset_color%}";
     echo "${color}${time}${color_reset}";
@@ -8,7 +8,7 @@ function real_time() {
 
 # directory
 function directory() {
-    local color="%{$fg_no_bold[blue]%}";
+    local color="%{$fg_bold[blue]%}";
     # REF: https://stackoverflow.com/questions/25944006/bash-current-working-directory-with-replacing-path-to-home-folder
     local directory="${PWD/#$HOME/~}";
     local color_reset="%{$reset_color%}";
