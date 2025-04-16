@@ -53,14 +53,15 @@ cmp.setup({
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-	formatting = {
+	formatting = {  
+        fields = { "kind", "abbr", "menu" },
 	    format = function(entry, vim_item)
 	    	vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
 			vim_item.menu = ({
-				buffer = "[Buffer]",
         		nvim_lsp = "[LSP]",
-        		luasnip = "[LuaSnip]",
         		nvim_lua = "[Lua]",
+        		luasnip = "[LuaSnip]",
+				buffer = "[Buffer]",
 			})[entry.source.name]
 			return vim_item
 		end
@@ -94,8 +95,8 @@ cmp.setup({
 		end, { "i", "s"}),
 	},
 	sources ={ 
-		{ name = "cmp_tabnine" },
 		{ name = "nvim_lsp" },
+		{ name = "cmp_tabnine" },
 		{ name = "luasnip" },
 	},
 })
@@ -182,5 +183,23 @@ require("lspconfig").rust_analyzer.setup(
 	capabilities = capabilities
 })
 
-
-
+-- local snippets_paths = function()
+--	local plugins = { "friendly-snippets" }
+--	local paths = {}
+--	local path
+--	local root_path = vim.env.HOME .. "/.vim/plugged/"
+--	for _, plug in ipairs(plugins) do
+--		path = root_path .. plug
+--		if vim.fn.isdirectory(path) ~= 0 then
+--			table.insert(paths, path)
+--		end
+--	end
+--	return paths
+--end
+--
+--require("luasnip.loaders.from_vscode").lazy_load({
+--	paths = snippets_paths(),
+--	include = nil, -- Load all languages
+--	exclude = {},
+--})
+--

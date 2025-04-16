@@ -58,14 +58,14 @@ return require('packer').startup(function(use)
     use 'SmiteshP/nvim-navic'
 	-- Themes
 	use 'folke/tokyonight.nvim'
-	use 'B4mbus/oxocarbon-lua.nvim'
 	use 'vv9k/bogster'
 	use 'EdenEast/nightfox.nvim'
+    use 'Yagua/nebulous.nvim'
+    use 'bluz71/vim-moonfly-colors'
+    use 'sainnhe/sonokai'
     use 'nvim-tree/nvim-web-devicons'
 	-- Utility
 	use 'norcalli/nvim-colorizer.lua'
-    use 'f-person/git-blame.nvim'
-
-
+    use 'lewis6991/gitsigns.nvim'
 end)
 
