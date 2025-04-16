@@ -27,7 +27,7 @@ require('patrick')
 -- Some plugins require stuff to be set before
 -- colorschemes
 -- cmd("colorscheme tokyonight-night")
-require("nebulous").setup { variant="twilight"}
+require("nebulous").setup { variant="night"}
 
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
