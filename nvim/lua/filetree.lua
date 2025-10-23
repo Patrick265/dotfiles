@@ -1,4 +1,3 @@
-
 require("nvim-tree").setup(
 {
     sort_by = "name",
@@ -10,3 +9,5 @@ require("nvim-tree").setup(
         git_ignored = false
     }
 })
+
+vim.keymap.set({ 'n' }, '<leader>e', ':NvimTreeToggle<CR>')

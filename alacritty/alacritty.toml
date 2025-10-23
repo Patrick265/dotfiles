@@ -16,6 +16,6 @@ vi_mode_style = "None"
 unfocused_hollow = false
 
 [font]
-size = 10.0
-normal = { family = "Cascadia Code NF", style = "Regular" } 
-bold = { family = "Cascadia Code NF", style = "Bold" } 
+size = 9.0
+normal = { family = "CommitMono Nerd Font", style = "Regular" } 
+bold = { family = "CommitMono Nerd Font", style = "Bold" } 

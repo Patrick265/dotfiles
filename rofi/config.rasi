@@ -1,6 +1,7 @@
 configuration {
     modi: "drun,run,window,ssh";
     show-icons: true;
+    font: "CommitMono Nerd Font 10";
     display-drun: "";
 }
 

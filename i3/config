@@ -1,13 +1,13 @@
 set $mod Mod4
 
-font pango: Cascadia Code NF, FontAwesome 12
+font pango: CommitMono Nerd Font, FontAwesome 12
 
 exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-exec --no-startup-id compton
+exec_always --no-startup-id compton --opengl --glx-no-stencil --glx-no-rebind-pixmap --backend glx --config $HOME/.config/compton.conf 
 
 # Applets
 exec --no-startup-id nm-applet
@@ -153,9 +153,9 @@ workspace $ws17 output "DP-1-2"
 workspace $ws18 output "DP-1-2"
 workspace $ws19 output "DP-1-2"
 
-workspace $ws20 output "eDP-1"
-workspace $ws21 output "eDP-1"
-workspace $ws22 output "eDP-1"
+workspace $ws20 output "DP-1-3"
+workspace $ws21 output "DP-1-3"
+workspace $ws22 output "DP-1-3"
 
 # move focused container to workspace
 bindsym $mod+Shift+1 	move container to workspace number $ws1
@@ -228,11 +228,11 @@ set $uws-text #ffffff
 set $iws-bg   #ffffff
 
 bar {
-    font pango: Cascadia Code NF, FontAwesome 12
+    font pango: CommitMono Nerd Font, FontAwesome 11
     position top
     status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config.toml
     tray_output primary
-    tray_padding 5
+    tray_padding 2
     colors {
         separator $ws-bg
         background $bg
@@ -255,11 +255,13 @@ default_floating_border pixel 1
 bindsym Control+Shift+1 [class="^.*"] border toggle
 for_window [class="^.*"] border pixel 1 
 
-gaps outer 5
-gaps inner 5
+gaps outer 0
+gaps inner 0
 
 bindsym $mod+Return exec alacritty 
 bindsym $mod+e exec thunar
-bindsym $mod+r exec rofi -i -show drun -modi drun -show-icons -font "Cascadia Code NF 12"
+bindsym $mod+r exec rofi -i -show drun -modi drun -show-icons -font "CommitMono Nerd Font 12"
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec_always --no-startup-id feh --bg-fill ~/Pictures/k80uk50z1mm61.webp
+exec_always --no-startup-id feh --bg-fill ~/Pictures/tps04izy1mm61.webp
+
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh

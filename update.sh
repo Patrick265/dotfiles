@@ -3,7 +3,7 @@
 
 CONFIG_DIR=$HOME/.config
 
-mkdir -p i3 i3status-rust nvim alacritty rofi ohmyzsh dunst compton screenlayout
+mkdir -p i3 i3status-rust nvim alacritty rofi ohmyzsh dunst compton screenlayout tmux vscode
 
 # i3wm
 cp $CONFIG_DIR/i3/config i3/
@@ -24,3 +24,7 @@ cp $CONFIG_DIR/compton.conf compton/
 
 cp -r ~/.screenlayout/* screenlayout/
 
+cp ~/.tmux.conf tmux/
+
+# vscode
+cp ~/.config/Code/User/settings.json vscode/
