@@ -1,21 +1,22 @@
 {
-    "editor.fontSize": 11,
-    "editor.fontFamily": "'CommitMono Nerd Font Regular','Droid Sans Mono', 'monospace', monospace",
+    "window.zoomLevel": -0.75,
+    "editor.fontFamily": "SF Mono",
+    "editor.fontSize": 14,
     "editor.renderWhitespace": "none",
+    "editor.overviewRulerBorder": false, // removes border from overview ruler (located on the right, same position as the scrollbar)
+    "editor.hideCursorInOverviewRuler": true, // hides cursor mark in the overview ruler
     "editor.snippetSuggestions": "bottom",
     "editor.suggest.showSnippets": true,
     "editor.largeFileOptimizations": true,
     "editor.lineNumbers": "on",
-    "editor.inlayHints.fontFamily": "Cascadia Code Regular",
     "editor.inlayHints.padding": true,
     "editor.showDeprecated": false,
-    "editor.inlayHints.enabled": "off",
+    "editor.inlayHints.enabled": "on",
     "editor.renderControlCharacters": false,
     "editor.stickyScroll.enabled": false,
     "editor.guides.indentation": false,
     "editor.minimap.enabled": false,
-    "extensions.autoUpdate": "onlyEnabledExtensions",
-    "chat.commandCenter.enabled": false,
+    "extensions.autoUpdate": "on",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {
@@ -45,11 +46,13 @@
     "window.titleBarStyle": "custom",
     "window.customTitleBarVisibility": "auto",
     "workbench.activityBar.location": "top",
-    "workbench.iconTheme": "material-icon-theme",
     "workbench.editor.editorActionsLocation": "titleBar",
     "workbench.tree.indent": 10,
     "workbench.list.smoothScrolling": true,
     "workbench.editor.highlightModifiedTabs": false,
+    "workbench.colorCustomizations": { // object that allows you to customize your color theme: https://code.visualstudio.com/docs/getstarted/theme-color-reference
+        "tab.activeBorder": "#0000" // removes border to highlight active tabs (the colors formats are: #RGB, #RGBA, #RRGGBB or #RRGGBBAA)
+    },
     ////////////////////////////////////////////////////////////////////////
     // PLUGINS
     ////////////////////////////////////////////////////////////////////////
@@ -67,6 +70,7 @@
     "cmake.automaticReconfigure": false,
     "cmake.autoSelectActiveFolder": false,
     "cmake.configureOnEdit": false,
+    "cmake.configureOnOpen": false,
     "cmake.options.statusBarVisibility": "hidden",
     "cmake.options.advanced": {
         "configurePreset": {
@@ -80,15 +84,10 @@
         "buildTarget": {
             "statusBarVisibility": "compact"
         },
-        "workflow": {
-            "statusBarVisibility": "compact"
-        },
-        "debug": {
-            "statusBarVisibility": "hidden"
-        },
-        "launch": {
-            "statusBarVisibility": "hidden"
-        },
+        "workflow": { "statusBarVisibility": "compact" },
+        "debug":    { "statusBarVisibility": "hidden" },
+        "launch":   { "statusBarVisibility": "hidden" },
+        "test":     { "statusBarVisibility": "compact" },
     },
     "cmake.pinnedCommands": [
         "workbench.action.tasks.configureTaskRunner",
@@ -98,22 +97,46 @@
     "git.detectSubmodulesLimit": 30,
     "git.replaceTagsWhenPull": true,
     "window.commandCenter": false,
-    "window.menuBarVisibility": "compact",
-    "clangd.path": "/home/pdjo/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/21.1.0/clangd_21.1.0/bin/clangd",
+    "clangd.path": "/home/pdjo/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/23.1.0/clangd_23.1.0/bin/clangd",
     "editor.rulers": [
+        80,
         120,
     ],
-    "chat.agent.enabled": false,
-    "chat.extensionTools.enabled": false,
+    // "chat.agent.enabled": false,
+    // "chat.extensionTools.enabled": false,
     "terminal.integrated.defaultProfile.linux": "zsh",
     "diffEditor.ignoreTrimWhitespace": false,
     "debug.console.fontSize": 12,
     "scm.inputFontSize": 11,
     "terminal.integrated.fontSize": 12,
-    "chat.editor.fontSize": 11,
+    // "chat.editor.fontSize": 11,
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "debug.onTaskErrors": "abort",
     "workbench.panel.showLabels": false,
     "hediet.vscode-drawio.resizeImages": null,
-    "workbench.colorTheme": "Default Light+",
+    "window.menuBarVisibility": "compact",
+    "terminal.integrated.suggest.suggestOnTriggerCharacters": false,
+    "terminal.integrated.suggest.quickSuggestions": {
+        "commands": "off",
+        "arguments": "off",
+        "unknown": "off"
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "clangd.detectExtensionConflicts": false,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": true,
+    },
+    "python.analysis.exclude": [
+        "extern/neuron-tools/neuron/shuffle/acp_init.py"
+    ],
+    "debug.breakpointsView.presentation": "tree",
+    "terminal.integrated.initialHint": false,
+    "[yaml]": {
+        "diffEditor.ignoreTrimWhitespace": true
+    },
+    "workbench.colorTheme": "Minimal Light",
+    "git.blame.statusBarItem.enabled": true,
+    "workbench.iconTheme": "vscode-icons",
+    "scm.repositories.selectionMode": "single",
+    "chat.viewSessions.orientation": "stacked",
 }

@@ -2,7 +2,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 export VISUAL="nvim"
 
-ZSH_THEME="edvardm"
+# ZSH_THEME="edvardm"
+ZSH_THEME="mytheme"
 
 zstyle ':omz:update' mode auto      # update automatically without asking
 
@@ -20,11 +21,14 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 
+alias dr18="docker run -ti -u 1000:1000 -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:18.04.3"
+alias dr20="docker run -ti -u 1000:1000 -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:20.04"
+alias dr22="docker run -ti -u 1000:1000 -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:22.04"
+alias dr24="docker run -ti -u 1000:1000 -v $(pwd):/home/docker mi-git.evs.tv:4567/docker/docker-linux/buildroot:24.04"
+alias dr_xt_neuron="docker run -ti -v /home/pdjo/:/workspace:rw --cap-add=SYS_PTRACE --security-opt seccomp=unconfined evs-xt-release-docker.artifactory.evs.tv/neuron-sdk:latest"
+
 alias e="nvim"
 alias hm="cd $HOME"
-
-alias ls="eza"
-alias ll="eza -la"
 
 alias reboot="echo \"no I don't think I will.\""
 alias gsub="git submodule update --init --recursive"
@@ -35,13 +39,12 @@ alias gpu="git pull"
 alias gall="git add *"
 alias gclean="git_delete_unused_branches"
 alias venv="source .venv/bin/activate"
+alias sly="~/.screenlayout/layout2.sh"
+alias sly_work="~/.screenlayout/layout.sh"
+alias sly_hm="~/.screenlayout/layout-hm.sh"
 
 export PATH="$PATH"
-export PATH="$PATH:/usr/local/go/bin:/home/patrick/bin:"
-export PATH="$PATH:/home/patrick/.local/bin:"
-export PATH="$PATH:/home/patrick/bin/tracy/profiler/build/unix:"
-export PATH="$PATH:/home/patrick/.cargo/bin"
-export PATH="$PATH:/home/patrick/.spicetify"
+export PATH="$PATH:/home/pdjo/bin/clangd_22.1.0/bin"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
@@ -49,6 +52,8 @@ unsetopt nomatch
 # export TERM=xterm-256color
 export TERM=screen-256color
 export SSH_AUTH_SOCK="/run/user/$(id -u)/keyring/ssh"
+
+export HELIX_RUNTIME=~/bin/helix/runtime
 
 
 function git_delete_unused_branches() {
